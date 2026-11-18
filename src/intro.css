@@ -1,0 +1,343 @@
+.intro-film {
+  color: var(--ink);
+  text-align: center;
+}
+.intro-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  gap: 10px;
+}
+.intro-progress {
+  height: 5px;
+  border-radius: 9px;
+  background: #d9e6f5;
+  margin: 10px 0 18px;
+  overflow: hidden;
+}
+.intro-progress i {
+  display: block;
+  height: 100%;
+  background: #3f51b5;
+  transition: width 0.1s linear;
+}
+.intro-scene {
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+.intro-scene h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.intro-tagline {
+  color: #3f51b5;
+  font-size: 17px;
+  font-weight: 800;
+}
+.intro-team {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 235px;
+}
+.intro-team > svg,
+.intro-team > div {
+  width: 25%;
+  height: 100%;
+}
+.intro-enter {
+  animation: intro-enter 0.7s both;
+  animation-delay: calc(var(--i) * 0.15s);
+}
+@keyframes intro-enter {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.intro-selection {
+  height: 205px;
+}
+.intro-selection .soldier-art {
+  height: 180px;
+}
+.intro-selection > span {
+  font-size: 9px;
+  font-weight: 800;
+  color: #3f51b5;
+}
+.intro-numbers {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px;
+}
+.intro-numbers > span {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 53px;
+  height: 53px;
+  background: #e5eef9;
+  border: 2px solid #c4d2e7;
+  border-radius: 14px;
+  color: #3f51b5;
+  font-size: 26px;
+  font-weight: 900;
+}
+.intro-numbers > span.picked {
+  background: #fce34d;
+  border-color: #3f51b5;
+  box-shadow: 0 0 0 4px #3f51b520;
+}
+.intro-pointer {
+  position: absolute;
+  width: 30px;
+  height: 36px;
+  left: 27px;
+  top: 34px;
+  animation: intro-point 1s ease-out both;
+}
+@keyframes intro-point {
+  from {
+    transform: translate(80px, 50px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+.intro-scene > .notebook {
+  width: 100%;
+  margin: 18px auto;
+}
+.intro-development > .soldier-art {
+  height: 215px;
+  width: 100%;
+}
+.intro-match {
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  color: #26805e;
+}
+.intro-unlock {
+  display: block;
+  background: #fce34d;
+  color: #24305a;
+  padding: 8px 15px;
+  border-radius: 10px;
+  width: fit-content;
+  margin: 0 auto 12px;
+  animation: intro-enter 0.3s;
+}
+.intro-stages {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.intro-stages > span {
+  padding: 5px 6px;
+  border-radius: 6px;
+  background: #e1e8f1;
+  color: #697891;
+  font-size: 10px;
+  font-weight: 800;
+}
+.intro-stages > span.built {
+  color: #277655;
+  background: #ddf2e6;
+}
+.intro-development > small {
+  font-size: 10px;
+  color: var(--muted);
+}
+.intro-miss > .notebook {
+  margin: 12px 0;
+}
+.intro-miss > span {
+  font-size: 16px;
+  font-weight: 900;
+  color: #e86a33;
+}
+.intro-miss > p {
+  font-size: 12px;
+}
+.intro-duel {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+.intro-duel > div {
+  width: 44%;
+}
+.intro-duel .soldier-art {
+  height: 235px;
+}
+.intro-duel > div:nth-child(2) > .soldier-art {
+  transform: scaleX(-1);
+}
+.intro-duel small {
+  font-size: 9px;
+  font-weight: 800;
+}
+.intro-projectile {
+  position: absolute;
+  left: 36%;
+  top: 49%;
+  width: 13px;
+  height: 7px;
+  background: #fce34d;
+  border: 2px solid #e86a33;
+  border-radius: 8px;
+  animation: intro-shot 0.6s linear forwards;
+}
+@keyframes intro-shot {
+  to {
+    left: 70%;
+  }
+}
+.intro-victory {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  color: #3f51b5;
+}
+.intro-victory strong {
+  font-size: 19px;
+  max-width: 320px;
+}
+.intro-scene > p:last-child {
+  font-size: 13px;
+}
+.intro-caption {
+  font-size: 14px;
+  font-weight: 750;
+  min-height: 45px;
+  margin: 15px 0 8px;
+  line-height: 1.5;
+}
+.intro-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.intro-controls .button {
+  font-size: 11px;
+  padding: 8px 13px;
+  min-height: 36px;
+}
+.intro-controls .text-button {
+  font-size: 11px;
+}
+.intro-footnote {
+  display: block;
+  font-size: 9px;
+  color: var(--muted);
+  margin-top: 12px;
+}
+.intro-film.paused *,
+.intro-film.paused *::before,
+.intro-film.paused *::after {
+  animation-play-state: paused !important;
+}
+.intro-film.still * {
+  animation: none !important;
+  transition: none !important;
+}
+.soldier-part[data-state="completed"] {
+  opacity: 1;
+}
+.intro-film .notebook.play .nb-result {
+  font-size: 11px;
+}
+.intro-film .notebook.play .nb-who {
+  font-size: 10px;
+}
+[data-theme="dark"] .intro-tagline,
+[data-theme="dark"] .intro-victory {
+  color: #a9d6f5;
+}
+@media (max-width: 500px) {
+  .intro-scene {
+    min-height: 330px;
+  }
+  .intro-scene h3 {
+    font-size: 21px;
+  }
+  .intro-team {
+    height: 200px;
+  }
+  .intro-tagline {
+    font-size: 14px;
+  }
+  .intro-numbers {
+    gap: 8px;
+    margin: 20px 0;
+  }
+  .intro-numbers > span {
+    width: 43px;
+    height: 47px;
+  }
+  .intro-duel .soldier-art {
+    height: 190px;
+  }
+  .intro-caption {
+    font-size: 12px;
+  }
+  .intro-stages {
+    gap: 3px;
+  }
+  .intro-stages > span {
+    font-size: 8px;
+    padding: 5px;
+  }
+  .intro-development > .soldier-art {
+    height: 190px;
+  }
+  .intro-controls {
+    gap: 7px;
+  }
+  .intro-meta {
+    font-size: 8px;
+  }
+}
+/* ---------- easier-progression scenes ---------- */
+.intro-pick { display: flex; flex-direction: column; align-items: center; border-radius: 16px; transition: box-shadow 0.3s, background 0.3s; }
+.intro-pick .soldier-art { flex: 1; min-height: 0; width: 100%; }
+.intro-pick > small { font-size: 10px; font-weight: 900; letter-spacing: 0.06em; color: var(--muted); padding-bottom: 4px; }
+.intro-pick.picked { background: rgba(252, 227, 77, 0.28); box-shadow: inset 0 0 0 3px #fce34d; }
+.intro-pick.picked > small { color: var(--ink); }
+.intro-digits { display: grid; gap: 12px; justify-items: center; }
+.intro-compare { display: flex; align-items: center; gap: 14px; padding: 12px 18px; border-radius: 16px; font-weight: 950; animation: intro-enter 0.5s both; transition: opacity 0.4s; }
+.intro-compare span { font-size: 22px; letter-spacing: 0.04em; }
+.intro-compare mark { background: #fce34d; color: #1e2650; padding: 0 4px; border-radius: 6px; }
+.intro-compare b { font-size: 26px; }
+.intro-compare.ok { background: #ddf2e6; color: #1f6e4c; }
+.intro-compare.no { background: #fde1d3; color: #b5481d; }
+.intro-assist { font-weight: 900; color: #26805e; max-width: 34ch; text-align: center; transition: opacity 0.4s; }
+:root[data-theme="dark"] .intro-assist { color: #7fe0b1; }
+.intro-digits .later { opacity: 0; }
+.intro-complete { background: #2f9e6b; color: #fff; }
+.intro-victory { margin-top: 8px; }
+@media (max-width: 500px) {
+  .intro-compare { gap: 8px; padding: 10px 12px; }
+  .intro-compare span { font-size: 17px; }
+  .intro-compare b { font-size: 19px; }
+}

@@ -1,0 +1,12 @@
+# Render Blueprint: one web service hosts the frontend and the Socket.IO backend (HTTPS + WSS).
+services:
+  - type: web
+    name: squad-showdown
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    numInstances: 1
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
