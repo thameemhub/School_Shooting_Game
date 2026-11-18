@@ -68,22 +68,26 @@ test("only 1, 3, 5, 7 or 9 may be chosen, for one of your own soldiers, on your 
   assert.throws(() => run(g, { type: "book" } as unknown as Action), /Unknown/);
 });
 
-test("assisted draw: ~50% matches, pages always agree with the verdict, every digit stays reachable", () => {
+test("assisted draw: ~50% matches, pages always agree with the verdict, only odd pages appear", () => {
   const random = seeded(7);
   for (const pageMax of [10, 37, 500, 100000]) {
     const settings = { ...DEFAULT_SETTINGS, pageMax };
     let matches = 0;
     const digits = new Set<number>();
+    const all = new Set<number>();
     for (let i = 0; i < 20000; i++) {
       const lucky = LUCKY_NUMBERS[i % 5];
       const { page: n, match } = assistedPage(settings, lucky, false, random);
       assert.ok(Number.isInteger(n) && n >= 1 && n <= pageMax, `page ${n} within 1..${pageMax}`);
       assert.equal(match, lastDigit(n) === lucky, "last digit consistent with the result");
+      assert.equal(lastDigit(n) % 2, 1, "the notebook never opens an even page");
+      all.add(lastDigit(n));
       if (match) matches++;
       else digits.add(lastDigit(n));
     }
     assert.ok(Math.abs(matches / 20000 - MATCH_CHANCE) < 0.02, `match rate ${matches / 20000} ≈ 0.5 (pageMax ${pageMax})`);
-    assert.equal(digits.size, 10, "misses land on even digits and other odd digits too");
+    assert.deepEqual([...digits].sort(), [1, 3, 5, 7, 9], "misses land on the other odd digits");
+    assert.equal(all.size, 5);
     for (let i = 0; i < 2000; i++) {
       const lucky = LUCKY_NUMBERS[i % 5];
       const guaranteed = assistedPage(settings, lucky, true, random);
@@ -363,6 +367,7 @@ test("bots use the same assisted notebook rules and finish six-squad matches", (
     const fresh = unassisted.filter((e) => e.match).length / unassisted.length;
     assert.ok(Math.abs(fresh - 0.5) < 0.06, `${difficulty} unassisted rate ${fresh.toFixed(3)} ≈ 1/2`);
     assert.ok(openings.every((e) => !e.assisted || e.match), "assisted openings always match");
+    assert.ok(openings.every((e) => e.digit! % 2 === 1), "bots never see an even page");
     for (const s of g.players.flatMap((p) => p.soldiers)) {
       const results = openings.filter((e) => e.soldierId === s.id).map((e) => e.match);
       assert.ok(!results.some((m, i) => !m && results[i + 1] === false), "no soldier misses twice in a row");

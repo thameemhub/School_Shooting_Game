@@ -354,6 +354,7 @@ test("server-validated assisted matching: two online squads develop SOLDIER 1 â†
     assert.ok(openings.length >= 40 && openings.length <= 80, `${openings.length} openings for 40 parts`);
     assert.ok(openings.every((e) => e.digit === e.page! % 10 && e.match === (e.digit === e.guess) && e.page! >= 1 && e.page! <= g.settings.pageMax));
     assert.ok(openings.every((e) => !e.assisted || e.match));
+    assert.ok(openings.every((e) => e.digit! % 2 === 1), "server never opens an even page");
     for (const s of g.players.flatMap((p) => p.soldiers)) {
       const results = openings.filter((e) => e.soldierId === s.id).map((e) => e.match);
       assert.ok(!results.some((m, i) => !m && results[i + 1] === false), "never two misses in a row");

@@ -1,4 +1,4 @@
-import { MATCH_CHANCE, type LuckyNumber, type Settings } from "./types";
+import { LUCKY_NUMBERS, MATCH_CHANCE, type LuckyNumber, type Settings } from "./types";
 export const randomPage = (settings: Settings, random = Math.random) =>
   1 + Math.floor(random() * settings.pageMax);
 export const lastDigit = (page: number) => page % 10;
@@ -13,7 +13,8 @@ const pick = (digit: number, max: number, u: number) => nthPage(digit, Math.min(
  * ASSISTED notebook draw — deliberately NOT a uniform random page.
  * The outcome is decided first: a guaranteed match (the soldier missed last time) or a coin flip
  * with MATCH_CHANCE. Then a page is drawn whose last digit agrees with that outcome: a page ending
- * in the lucky number for a match, otherwise a page ending in one of the nine other digits.
+ * in the lucky number for a match, otherwise a page ending in one of the four other odd digits
+ * (1, 3, 5, 7, 9). The notebook never shows an even page.
  * One random draw decides everything, so the server's random source fully controls the result.
  */
 export function assistedPage(settings: Settings, lucky: LuckyNumber, guaranteed: boolean, random = Math.random) {
@@ -21,7 +22,7 @@ export function assistedPage(settings: Settings, lucky: LuckyNumber, guaranteed:
   const match = guaranteed || r < MATCH_CHANCE;
   if (match) return { page: pick(lucky, settings.pageMax, guaranteed ? r : r / MATCH_CHANCE), match };
   const u = (r - MATCH_CHANCE) / (1 - MATCH_CHANCE);
-  const others = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].filter((d) => d !== lucky && pagesEndingIn(d, settings.pageMax) > 0);
+  const others = LUCKY_NUMBERS.filter((d) => d !== lucky && pagesEndingIn(d, settings.pageMax) > 0);
   const slot = Math.min(others.length - 1, Math.floor(u * others.length));
   return { page: pick(others[slot], settings.pageMax, u * others.length - slot), match };
 }
